@@ -1,12 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const footerStyles = {
-  backgroundColor: '#d7ebab',
-  height: '80px',
-};
+const StFooter = styled.footer`
+  background-color: #d7ebab;
+  height: 80px;
+`;
 
 function Footer() {
-  return <footer style={footerStyles}>Footer입니다</footer>;
+  return <StFooter>Footer입니다</StFooter>;
 }
 
 export default Footer;

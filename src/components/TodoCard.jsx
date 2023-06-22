@@ -4,41 +4,42 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import uuid from 'react-uuid';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { addTodo } from '../redux/modules/todos';
 import { deleteTodo } from '../redux/modules/todos';
 import { switchTodo } from '../redux/modules/todos';
 
-const todoCardLayoutStyles = {
-  padding: '20px 100px',
-};
+const StTodoCardLayout = styled.div`
+  padding: 20px 100px;
+`;
 
-const headerStyles = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-};
+const StHeader = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-const formStyles = {
-  padding: '10px',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-};
+const StForm = styled.form`
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
-const twoSectionStyles = {
-  display: 'flex',
-  justifyContent: 'space-between',
-};
+const StTwoSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
-const sectionStyles = {
-  width: '40%',
-};
+const StSection = styled.section`
+  width: 40%;
+`;
 
-const todoStyles = {
-  display: 'flex',
-  justifyContent: 'space-between',
-};
+const StLitodo = styled.li`
+  display: flex;
+  justify-content: space-between;
+`;
 
 function TodoCard() {
   const [title, setTitle] = useState('');
@@ -88,24 +89,24 @@ function TodoCard() {
     dispatch(switchTodo(isdoneTODO));
   };
   return (
-    <div style={todoCardLayoutStyles}>
-      <header style={headerStyles}>
+    <StTodoCardLayout>
+      <StHeader>
         <h3>TODO of '2023.06.19.MON'</h3>
         <div>
           <button>할일 추가</button>
           <button>카드 삭제</button>
         </div>
-      </header>
-      <form style={formStyles} onSubmit={onNewTodoSubmitEventHandler}>
+      </StHeader>
+      <StForm onSubmit={onNewTodoSubmitEventHandler}>
         <input type="text" placeholder="제목입력" value={title} onChange={onTitleChangeEventHandler} />
         <input type="text" placeholder="내용입력" value={content} onChange={onContentChangeEventHandler} />
         <div>
           <button type="submit">등록</button>
           <button type="button">취소</button>
         </div>
-      </form>
-      <div style={twoSectionStyles}>
-        <section style={sectionStyles}>
+      </StForm>
+      <StTwoSection>
+        <StSection>
           <h3>Working</h3>
           <ul>
             {todos
@@ -114,7 +115,7 @@ function TodoCard() {
               })
               .map(todo => {
                 return (
-                  <li key={todo.id} style={todoStyles}>
+                  <StLitodo key={todo.id}>
                     <div>
                       <input type="checkbox" checked={todo.isDone} onChange={() => onCheckboxChangeEventHandler(todo.id)} />
                       <span>
@@ -122,12 +123,12 @@ function TodoCard() {
                       </span>
                     </div>
                     <button onClick={() => onDeleteTodoClickEventHandler(todo.id)}>X</button>
-                  </li>
+                  </StLitodo>
                 );
               })}
           </ul>
-        </section>
-        <section style={sectionStyles}>
+        </StSection>
+        <StSection>
           <h3>Done</h3>
           <ul>
             {todos
@@ -136,7 +137,7 @@ function TodoCard() {
               })
               .map(todo => {
                 return (
-                  <li key={todo.id} style={todoStyles}>
+                  <StLitodo key={todo.id}>
                     <div>
                       <input type="checkbox" checked={todo.isDone} onChange={() => onCheckboxChangeEventHandler(todo.id)} />
                       <span>
@@ -144,13 +145,13 @@ function TodoCard() {
                       </span>
                     </div>
                     <button onClick={() => onDeleteTodoClickEventHandler(todo.id)}>X</button>
-                  </li>
+                  </StLitodo>
                 );
               })}
           </ul>
-        </section>
-      </div>
-    </div>
+        </StSection>
+      </StTwoSection>
+    </StTodoCardLayout>
   );
 }
 

@@ -1,20 +1,21 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import styled from 'styled-components';
 
-const layoutStyles = {
-  maxWidth: '1200px',
-  minWidth: '800px',
-  margin: 'auto',
-};
+const StLayout = styled.div`
+  max-width: 1200px;
+  min-width: 800px;
+  margin: auto;
+`;
 
 function Layout({ children }) {
   return (
-    <div style={layoutStyles}>
+    <StLayout>
       <Header />
       {children}
       <Footer />
-    </div>
+    </StLayout>
   );
 }
 

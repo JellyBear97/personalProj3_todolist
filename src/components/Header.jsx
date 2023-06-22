@@ -1,18 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const headerStyles = {
-  backgroundColor: 'pink',
-  height: '80px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-};
+const StHeader = styled.header`
+  background-color: pink;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 function Header() {
   return (
-    <header style={headerStyles}>
+    <StHeader>
       <h1>My todo List</h1>
-    </header>
+    </StHeader>
   );
 }
 

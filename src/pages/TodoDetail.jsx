@@ -2,32 +2,42 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
 
-const cardStyles = {
-  position: 'relative',
-  width: '600px',
-  minHeight: '300px',
-  margin: '20px auto',
-  padding: '50px',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+const Stcard = styled.div`
+  position: relative;
+  width: 600px;
+  min-height: 300px;
+  margin: 20px auto;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  backgroundColor: 'beige',
-};
+  background-color: beige;
+`;
 
-const previousButtonStyle = {
-  position: 'absolute',
-  top: '10px',
-  right: '10px',
-};
+const StPreviousButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+`;
+
+const StCardH3 = styled.h3`
+  width: 100%;
+  height: 40px;
+  font-size: 25px;
+`;
+
+const StCardP = styled.p`
+  width: 100%;
+  height: 100%;
+`;
 
 function TodoDetail() {
   const navigate = useNavigate();
   const params = useParams();
   const todos = useSelector(state => state.todos);
-  // console.log(todos);
-  // console.log(params);
   const targetTodo = todos.filter(todo => {
     return todo.id === params.id;
   });
@@ -37,17 +47,16 @@ function TodoDetail() {
 
   return (
     <div>
-      <div style={cardStyles}>
-        <button
+      <Stcard>
+        <StPreviousButton
           onClick={() => {
             navigate('/');
-          }}
-          style={previousButtonStyle}>
+          }}>
           이전으로
-        </button>
-        <h3 style={{ width: '100%', height: '40px', fontSize: '25px' }}>{title}</h3>
-        <p style={{ width: '100%', height: '100%' }}>{content}</p>
-      </div>
+        </StPreviousButton>
+        <StCardH3>{title}</StCardH3>
+        <StCardP>{content}</StCardP>
+      </Stcard>
     </div>
   );
 }
